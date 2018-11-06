@@ -3,7 +3,7 @@ package com.geektech.architectureexample;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.geektech.architectureexample.ui.main.MainFragment;
+import com.geektech.architectureexample.presentation.main.MainFragment;
 
 public class MainActivity extends AppCompatActivity {
 

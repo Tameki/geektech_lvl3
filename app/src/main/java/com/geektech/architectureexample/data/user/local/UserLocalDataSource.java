@@ -23,14 +23,21 @@ public class UserLocalDataSource extends UserBaseDataSource {
 
     //endregion
 
-    //endregion
 
+    //region Contract
 
     @Override
-    public void checkLogin(LoginEntity loginData, CheckLoginCallback callback) {
+    public void checkLogin(LoginEntity loginData, DSCheckLoginCallback callback) {
         callback.onSuccess(
                 USERNAME.equals(loginData.name) &&
                         PASSWORD.equals(loginData.password)
         );
     }
+
+    @Override
+    public LoginEntity getLoginData() {
+        return new LoginEntity(USERNAME, PASSWORD, "");
+    }
+
+    //endregion
 }

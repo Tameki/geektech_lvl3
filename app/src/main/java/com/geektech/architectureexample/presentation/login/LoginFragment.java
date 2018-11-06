@@ -1,4 +1,4 @@
-package com.geektech.architectureexample.ui.login;
+package com.geektech.architectureexample.presentation.login;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -1,15 +1,17 @@
-package com.geektech.architectureexample.ui.login;
+package com.geektech.architectureexample.presentation.login;
 
-import com.geektech.architectureexample.data.user.UserDataSource;
+import android.util.Log;
+
+import com.geektech.architectureexample.domain.login.LoginUseCases;
 import com.geektech.architectureexample.model.LoginEntity;
 
 // Created by askar on 11/2/18.
 public class LoginPresenter implements LoginContract.Presenter{
     private LoginContract.View mView = null;
-    private UserDataSource mUserService;
+    private LoginUseCases mLoginUseCases;
 
-    public LoginPresenter(UserDataSource userService){
-        mUserService = userService;
+    public LoginPresenter(LoginUseCases loginUseCases){
+        mLoginUseCases = loginUseCases;
     }
 
     @Override
@@ -25,9 +27,9 @@ public class LoginPresenter implements LoginContract.Presenter{
 
     @Override
     public void onLoginClick(String name, String password) {
-        if (mView != null && mUserService != null) {
+        if (mView != null && mLoginUseCases != null) {
             LoginEntity loginEntity = new LoginEntity(name, password, "");
-            mUserService.checkLogin(loginEntity, new UserDataSource.CheckLoginCallback() {
+            mLoginUseCases.checkLogin(loginEntity, new LoginUseCases.UCCheckLoginCallback(){
                 @Override
                 public void onSuccess(Boolean result) {
                     if (result){
@@ -36,6 +38,12 @@ public class LoginPresenter implements LoginContract.Presenter{
                     } else {
                         mView.onLoginFailure("Name or password is incorrect!");
                     }
+                }
+
+                @Override
+                public void onFail(String message) {
+                    Log.d("ololo", message);
+                    super.onFail(message);
                 }
             });
         }

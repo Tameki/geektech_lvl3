@@ -1,4 +1,4 @@
-package com.geektech.architectureexample.ui.main;
+package com.geektech.architectureexample.presentation.main;
 
 import android.arch.lifecycle.ViewModel;
 

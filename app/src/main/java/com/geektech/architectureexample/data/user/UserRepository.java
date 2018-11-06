@@ -33,10 +33,23 @@ public class UserRepository implements UserDataSource {
 
     //endregion
 
+    //region Contract
+
     @Override
-    public void checkLogin(LoginEntity loginData, CheckLoginCallback callback) {
+    public void checkLogin(LoginEntity loginData, DSCheckLoginCallback callback) {
         if (mLocalDataSource != null) {
             mLocalDataSource.checkLogin(loginData, callback);
         }
     }
+
+    @Override
+    public LoginEntity getLoginData() {
+        if (mLocalDataSource != null) {
+            return mLocalDataSource.getLoginData();
+        }
+
+        return null;
+    }
+
+    //endregion
 }

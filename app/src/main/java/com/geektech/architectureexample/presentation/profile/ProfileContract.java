@@ -1,4 +1,4 @@
-package com.geektech.architectureexample.ui.profile;
+package com.geektech.architectureexample.presentation.profile;
 
 import com.geektech.core.BaseMVPContract;
 
