@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.geektech.architectureexample.data.ServiceProvider;
+import com.geektech.architectureexample.data.RepositoryProvider;
 
 // Created by askar on 11/2/18.
 public class LoginActivity extends AppCompatActivity {
@@ -18,7 +18,7 @@ public class LoginActivity extends AppCompatActivity {
         LoginFragment fragment = LoginFragment.getInstance();
 
         mPresenter = new LoginPresenter(
-                ServiceProvider.getUserService()
+                RepositoryProvider.getUserRepository()
         );
 
         mPresenter.attachView(fragment);
