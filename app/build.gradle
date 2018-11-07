@@ -5,7 +5,7 @@ apply plugin: 'realm-android'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.geektech.architectureexample"
+        applicationId "com.geektech.astudy"
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
