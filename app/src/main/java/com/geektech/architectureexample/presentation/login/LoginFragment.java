@@ -56,15 +56,12 @@ public class LoginFragment extends Fragment
         mNameInput = rootView.findViewById(R.id.fragment_login_name);
         mPasswordInput = rootView.findViewById(R.id.fragment_login_password);
 
-        mLoginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mPresenter != null) {
-                    mPresenter.onLoginClick(
-                            mNameInput.getText().toString(),
-                            mPasswordInput.getText().toString()
-                    );
-                }
+        mLoginBtn.setOnClickListener(v -> {
+            if (mPresenter != null) {
+                mPresenter.onLoginClick(
+                        mNameInput.getText().toString(),
+                        mPasswordInput.getText().toString()
+                );
             }
         });
     }

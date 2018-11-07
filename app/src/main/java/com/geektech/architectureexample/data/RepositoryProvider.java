@@ -1,5 +1,7 @@
 package com.geektech.architectureexample.data;
 
+import com.geektech.architectureexample.data.messages.MessagesDataSource;
+import com.geektech.architectureexample.data.messages.MessagesRepository;
 import com.geektech.architectureexample.data.user.UserRepository;
 import com.geektech.architectureexample.data.user.UserDataSource;
 import com.geektech.architectureexample.data.user.local.UserLocalDataSource;
@@ -14,5 +16,9 @@ public class RepositoryProvider {
         );
     }
 
+
+    public static MessagesDataSource getMessagesRepository(){
+        return MessagesRepository.getInstance();
+    }
 
 }
