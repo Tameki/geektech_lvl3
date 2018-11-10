@@ -32,7 +32,21 @@ public class MessagesRepository extends RealmBaseDataSource
             message.setId(getNextId(RMessage.class));
         }
 
-        executeTransaction(realm -> realm.copyToRealmOrUpdate(message));
+        executeTransaction(realm -> {
+            //Copy or update realm record, current 'message' is not managed
+            realm.copyToRealmOrUpdate(message);
+
+            //Managed
+            RMessage managed = realm.where(RMessage.class)
+                    .equalTo("id", message.getId()).findFirst();
+            //Record for managed models are updated, p.s. update only in transaction
+            managed.setContent("New content");
+
+            //Unmanaged
+            RMessage unmanaged = realm.copyFromRealm(managed);
+            //Record in db not updated
+            unmanaged.setContent(".......");
+        });
     }
 
     //endregion
