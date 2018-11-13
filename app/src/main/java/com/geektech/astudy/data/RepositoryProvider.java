@@ -1,5 +1,9 @@
 package com.geektech.astudy.data;
 
+import com.geektech.astudy.data.beer.BeerDataSource;
+import com.geektech.astudy.data.beer.BeerRepository;
+import com.geektech.astudy.data.beer.local.BeerLocalDataSource;
+import com.geektech.astudy.data.beer.remote.BeerRemoteDataSource;
 import com.geektech.astudy.data.messages.MessagesDataSource;
 import com.geektech.astudy.data.messages.MessagesRepository;
 import com.geektech.astudy.data.user.UserRepository;
@@ -19,6 +23,13 @@ public class RepositoryProvider {
 
     public static MessagesDataSource getMessagesRepository(){
         return MessagesRepository.getInstance();
+    }
+
+    public static BeerDataSource getBeerRepository(){
+        return BeerRepository.getInstance(
+                BeerLocalDataSource.getInstance(),
+                BeerRemoteDataSource.getInstance()
+        );
     }
 
 }

@@ -6,10 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.geektech.astudy.data.RepositoryProvider;
+import com.geektech.astudy.data.beer.BeerDataSource;
+import com.geektech.astudy.data.beer.model.Beer;
 import com.geektech.astudy.data.messages.MessagesDataSource;
 import com.geektech.astudy.data.messages.model.RMessage;
 import com.geektech.astudy.domain.UseCaseProvider;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -52,6 +55,20 @@ public class LoginActivity extends AppCompatActivity {
             public void onSuccess(List<RMessage> result) {
                 for (RMessage message : result) {
                     Log.d("ololo", message.toString());
+                }
+            }
+
+            @Override
+            public void onFail(String message) {
+
+            }
+        });
+
+        RepositoryProvider.getBeerRepository().getBeers(new BeerDataSource.BeersCallback() {
+            @Override
+            public void onSuccess(ArrayList<Beer> result) {
+                for (Beer beer : result) {
+                    Log.d("ololo", beer.toString());
                 }
             }
 
