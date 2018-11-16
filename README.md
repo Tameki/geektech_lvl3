@@ -1,7 +1,7 @@
 # Android 3 level GeekTech study project
 
 ### TODO: 
-    * RxJava, Butterknife
+    * RxJava (Refactor Beer repository), Butterknife
 
 ### Content:
     * Base MVP setup
