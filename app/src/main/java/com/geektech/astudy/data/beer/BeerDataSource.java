@@ -11,6 +11,10 @@ public interface BeerDataSource {
 
     void getRandom(BeerCallback callback);
 
+    void setBeers(ArrayList<Beer> data);
+
+    void getBeer(int id, BeerCallback callback);
+
     interface BeerCallback extends BaseCallback<Beer> {}
 
     interface BeersCallback extends BaseCallback<ArrayList<Beer>> {}

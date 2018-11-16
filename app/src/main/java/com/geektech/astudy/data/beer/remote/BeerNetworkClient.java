@@ -5,7 +5,11 @@ import com.geektech.astudy.data.beer.model.Beer;
 import java.util.ArrayList;
 
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.PATCH;
+import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Query;
 
 // Created by askar on 11/13/18.

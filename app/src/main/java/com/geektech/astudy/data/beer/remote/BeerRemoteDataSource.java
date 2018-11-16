@@ -34,7 +34,7 @@ public class BeerRemoteDataSource extends RetrofitBaseDataSource
 
     @Override
     public void getBeers(BeersCallback callback) {
-        Call<ArrayList<Beer>> beersCall = mClient.getBeers(1, 50);
+        Call<ArrayList<Beer>> beersCall = mClient.getBeers(2, 50);
 
         beersCall.enqueue(new Callback<ArrayList<Beer>>() {
             @Override
@@ -76,5 +76,15 @@ public class BeerRemoteDataSource extends RetrofitBaseDataSource
                 callback.onFail(t.getMessage());
             }
         });
+    }
+
+    @Override
+    public void setBeers(ArrayList<Beer> data) {
+
+    }
+
+    @Override
+    public void getBeer(int id, BeerCallback callback) {
+
     }
 }
