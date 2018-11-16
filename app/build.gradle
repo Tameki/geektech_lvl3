@@ -42,8 +42,10 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
 
+    //Firebase core
     implementation 'com.google.firebase:firebase-core:16.0.1'
 
+    //Firebase messaging
     implementation 'com.google.firebase:firebase-messaging:17.3.4'
 }
 
