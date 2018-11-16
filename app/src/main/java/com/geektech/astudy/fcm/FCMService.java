@@ -8,7 +8,6 @@ import com.google.firebase.messaging.RemoteMessage;
 // Created by askar on 11/16/18.
 public class FCMService extends FirebaseMessagingService {
 
-
     @Override
     public void onNewToken(String s) {
         Log.d("ololo", "New firebase token - " + s);
@@ -17,7 +16,14 @@ public class FCMService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        super.onMessageReceived(remoteMessage);
+        if (remoteMessage.getData() != null) {
+            for (String key : remoteMessage.getData().keySet()) {
+                Log.d("ololo", key + " "
+                        + remoteMessage.getData().get(key));
+            }
+        } else {
+            super.onMessageReceived(remoteMessage);
+        }
     }
 
 }
