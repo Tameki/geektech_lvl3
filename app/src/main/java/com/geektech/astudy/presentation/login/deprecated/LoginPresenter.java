@@ -1,27 +1,29 @@
-package com.geektech.astudy.presentation.login;
+package com.geektech.astudy.presentation.login.deprecated;
 
 import android.util.Log;
 
 import com.geektech.astudy.domain.login.LoginUseCases;
 import com.geektech.astudy.model.LoginEntity;
 
-import javax.inject.Inject;
-
-/**
- * Created by askar on 11/19/18
- * with Android Studio
- */
-public class LoginPresenter implements LoginContract.Presenter {
-    private LoginContract.View mView;
+// Created by askar on 11/2/18.
+@Deprecated
+public class LoginPresenter implements LoginContract.Presenter{
+    private LoginContract.View mView = null;
     private LoginUseCases mLoginUseCases;
 
-    @Inject
-    public LoginPresenter(
-            LoginContract.View view,
-            LoginUseCases loginUseCases
-    ){
-        this.mView = view;
-        this.mLoginUseCases = loginUseCases;
+    public LoginPresenter(LoginUseCases loginUseCases){
+        mLoginUseCases = loginUseCases;
+    }
+
+    @Override
+    public void attachView(LoginContract.View view) {
+        mView = view;
+        view.attachPresenter(this);
+    }
+
+    @Override
+    public void detachView() {
+        mView = null;
     }
 
     @Override
@@ -47,4 +49,3 @@ public class LoginPresenter implements LoginContract.Presenter {
         }
     }
 }
-

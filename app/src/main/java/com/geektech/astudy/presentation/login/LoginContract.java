@@ -1,16 +1,19 @@
 package com.geektech.astudy.presentation.login;
 
-import com.geektech.core.mvp.BaseMVPContract;
-
-// Created by askar on 11/2/18.
+/**
+ * Created by askar on 11/19/18
+ * with Android Studio
+ */
 public interface LoginContract {
-    interface View extends BaseMVPContract.View<Presenter> {
+    interface View {
+        void finishView();
+
         void onLoginSuccess();
 
         void onLoginFailure(String message);
     }
 
-    interface Presenter extends BaseMVPContract.Presenter<View>{
+    interface Presenter {
         void onLoginClick(String name, String password);
     }
 }

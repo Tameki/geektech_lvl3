@@ -1,4 +1,4 @@
-package com.geektech.astudy.presentation.login;
+package com.geektech.astudy.presentation.login.deprecated;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,46 +8,23 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.geektech.astudy.R;
 import com.geektech.astudy.presentation.main.MainActivity;
+import com.geektech.astudy.R;
 
-import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.Unbinder;
-
-/**
- * Created by askar on 11/19/18
- * with Android Studio
- */
+// Created by askar on 11/2/18.
+@Deprecated
 public class LoginFragment extends Fragment
         implements LoginContract.View {
 
-    @Inject
-    LoginPresenter mPresenter = null;
+    private LoginContract.Presenter mPresenter = null;
 
-    @BindView(R.id.fragment_login_name)
-    EditText mNameInput;
-
-    @BindView(R.id.fragment_login_password)
-    EditText mPasswordInput;
-
-    @OnClick(R.id.fragment_login_btn)
-    public void onClick(View view){
-        if (mPresenter != null) {
-            mPresenter.onLoginClick(
-                    mNameInput.getText().toString(),
-                    mPasswordInput.getText().toString()
-            );
-        }
-    }
-
-    private Unbinder mUnbinder;
+    private EditText mNameInput;
+    private EditText mPasswordInput;
+    private Button mLoginBtn;
 
     public static LoginFragment getInstance(){
         return new LoginFragment();
@@ -60,7 +37,7 @@ public class LoginFragment extends Fragment
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_login, container, false);
 
-        mUnbinder = ButterKnife.bind(this, rootView);
+        init(rootView);
 
         return rootView;
     }
@@ -68,16 +45,41 @@ public class LoginFragment extends Fragment
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        mUnbinder.unbind();
+        if (mPresenter != null) {
+            mPresenter.detachView();
+        }
     }
 
     //endregion
+
+    private void init(View rootView){
+        mLoginBtn = rootView.findViewById(R.id.fragment_login_btn);
+        mNameInput = rootView.findViewById(R.id.fragment_login_name);
+        mPasswordInput = rootView.findViewById(R.id.fragment_login_password);
+
+        mLoginBtn.setOnClickListener(v -> {
+            if (mPresenter != null) {
+                mPresenter.onLoginClick(
+                        mNameInput.getText().toString(),
+                        mPasswordInput.getText().toString()
+                );
+            }
+        });
+    }
+
+    //region Contract
+
 
     @Override
     public void finishView() {
         if (getActivity() != null){
             getActivity().finish();
         }
+    }
+
+    @Override
+    public void attachPresenter(LoginContract.Presenter presenter) {
+        mPresenter = presenter;
     }
 
     @Override
