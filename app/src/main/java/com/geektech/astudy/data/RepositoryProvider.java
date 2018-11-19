@@ -6,6 +6,8 @@ import com.geektech.astudy.data.beer.local.BeerLocalDataSource;
 import com.geektech.astudy.data.beer.remote.BeerRemoteDataSource;
 import com.geektech.astudy.data.messages.MessagesDataSource;
 import com.geektech.astudy.data.messages.MessagesRepository;
+import com.geektech.astudy.data.messages.local.MessagesLocalDataSource;
+import com.geektech.astudy.data.messages.remote.MessagesRemoteDataSource;
 import com.geektech.astudy.data.user.UserRepository;
 import com.geektech.astudy.data.user.UserDataSource;
 import com.geektech.astudy.data.user.local.UserLocalDataSource;
@@ -22,7 +24,10 @@ public class RepositoryProvider {
 
 
     public static MessagesDataSource getMessagesRepository(){
-        return MessagesRepository.getInstance();
+        return MessagesRepository.getInstance(
+                MessagesLocalDataSource.getInstance(),
+                MessagesRemoteDataSource.getInstance()
+        );
     }
 
     public static BeerDataSource getBeerRepository(){

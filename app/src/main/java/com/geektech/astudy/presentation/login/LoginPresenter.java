@@ -43,7 +43,6 @@ public class LoginPresenter implements LoginContract.Presenter{
                 @Override
                 public void onFail(String message) {
                     Log.d("ololo", message);
-                    super.onFail(message);
                 }
             });
         }

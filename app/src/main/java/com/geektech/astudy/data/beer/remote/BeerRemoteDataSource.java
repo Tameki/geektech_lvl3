@@ -18,9 +18,7 @@ public class BeerRemoteDataSource extends RetrofitBaseDataSource
 
     private static BeerRemoteDataSource INSTANCE;
 
-    public static BeerDataSource getInstance(
-
-    ){
+    public static BeerDataSource getInstance(){
         if (INSTANCE == null) {
             INSTANCE = new BeerRemoteDataSource();
         }

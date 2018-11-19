@@ -7,10 +7,5 @@ import com.geektech.core.callback.BaseCallback;
 public interface LoginUseCases {
     void checkLogin(LoginEntity loginEntity, UCCheckLoginCallback callback);
 
-    abstract class UCCheckLoginCallback implements BaseCallback<Boolean> {
-        @Override
-        public void onFail(String message) {
-
-        }
-    }
+    abstract class UCCheckLoginCallback implements BaseCallback<Boolean> { }
 }
