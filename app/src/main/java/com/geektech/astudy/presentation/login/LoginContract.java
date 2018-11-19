@@ -1,6 +1,6 @@
 package com.geektech.astudy.presentation.login;
 
-import com.geektech.core.BaseMVPContract;
+import com.geektech.core.mvp.BaseMVPContract;
 
 // Created by askar on 11/2/18.
 public interface LoginContract {

@@ -1,4 +1,4 @@
-package com.geektech.core;
+package com.geektech.core.mvp;
 
 // Created by askar on 11/2/18.
 public interface BaseMVPContract {

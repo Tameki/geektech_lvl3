@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.geektech.astudy.MainActivity;
+import com.geektech.astudy.presentation.main.MainActivity;
 import com.geektech.astudy.R;
 
 // Created by askar on 11/2/18.

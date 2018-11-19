@@ -1,8 +1,9 @@
-package com.geektech.astudy;
+package com.geektech.astudy.presentation.main;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.geektech.astudy.R;
 import com.geektech.astudy.presentation.main.MainFragment;
 
 public class MainActivity extends AppCompatActivity {
