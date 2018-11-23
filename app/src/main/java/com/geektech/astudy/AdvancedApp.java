@@ -25,6 +25,7 @@ public class AdvancedApp extends Application{
         Realm.init(this);
 
         initDagger();
+
     }
 
     private void initDagger(){

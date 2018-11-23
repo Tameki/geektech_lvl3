@@ -3,6 +3,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'realm-android'
 
 android {
+
+    def STRING = "String"
+    def API_URL = "API_URL"
+    def STAGING_URL = "\"its staging url\""
+    def DEV_URL = "\"its dev url\""
+    def PROD_URL = "\"its release url\""
+
     compileSdkVersion target_sdk_version
     defaultConfig {
         applicationId "com.geektech.astudy"
@@ -12,20 +19,33 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-    buildTypes {
-        release {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
 
+    buildTypes {
         debug {
             minifyEnabled false
+            buildConfigField STRING, API_URL, DEV_URL
+        }
+        staging {
+            minifyEnabled false
+            buildConfigField STRING, API_URL, STAGING_URL
+        }
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField STRING, API_URL, PROD_URL
         }
     }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "cc_${variant.buildType.name}_${defaultConfig.versionName}(${defaultConfig.versionCode}).apk"
+        }
     }
 }
 
@@ -37,6 +57,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    implementation project(':analytics')
 
     //Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'

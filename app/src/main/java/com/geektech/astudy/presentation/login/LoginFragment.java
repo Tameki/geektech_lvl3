@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.geektech.analytics.FabricAnalytics;
 import com.geektech.astudy.R;
 import com.geektech.astudy.presentation.main.MainActivity;
 
@@ -37,7 +38,7 @@ public class LoginFragment extends Fragment
     @BindView(R.id.fragment_login_password)
     EditText mPasswordInput;
 
-    @OnClick(R.id.fragment_login_btn)
+    @OnClick({R.id.fragment_login_btn})
     public void onClick(View view){
         if (mPresenter != null) {
             mPresenter.onLoginClick(
@@ -58,7 +59,11 @@ public class LoginFragment extends Fragment
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_login, container, false);
+        View rootView = inflater.inflate(
+                R.layout.fragment_login,
+                container,
+                false
+        );
 
         mUnbinder = ButterKnife.bind(this, rootView);
 
@@ -83,6 +88,7 @@ public class LoginFragment extends Fragment
     @Override
     public void onLoginSuccess() {
         if (getActivity() != null) {
+            FabricAnalytics.sendEvent("User login", "Success");
             getActivity().startActivity(new Intent(getActivity(), MainActivity.class));
         }
     }
