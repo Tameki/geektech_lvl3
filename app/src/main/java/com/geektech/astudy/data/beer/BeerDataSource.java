@@ -1,21 +1,18 @@
 package com.geektech.astudy.data.beer;
 
 import com.geektech.astudy.data.beer.model.Beer;
-import com.geektech.core.callback.BaseCallback;
 
 import java.util.ArrayList;
 
+import io.reactivex.Single;
+
 // Created by askar on 11/13/18.
 public interface BeerDataSource {
-    void getBeers(BeersCallback callback);
+    Single<ArrayList<Beer>> getBeers();
 
-    void getRandom(BeerCallback callback);
+    Single<Beer> getRandom();
 
     void setBeers(ArrayList<Beer> data);
 
-    void getBeer(int id, BeerCallback callback);
-
-    interface BeerCallback extends BaseCallback<Beer> {}
-
-    interface BeersCallback extends BaseCallback<ArrayList<Beer>> {}
+    Beer getBeer(int id);
 }

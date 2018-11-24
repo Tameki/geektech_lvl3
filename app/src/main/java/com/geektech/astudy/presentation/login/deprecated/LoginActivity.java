@@ -61,22 +61,8 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFail(String message) {
-
             }
         });
 
-        RepositoryProvider.getBeerRepository().getBeers(new BeerDataSource.BeersCallback() {
-            @Override
-            public void onSuccess(ArrayList<Beer> result) {
-                for (Beer beer : result) {
-                    Log.d("ololo", beer.toString());
-                }
-            }
-
-            @Override
-            public void onFail(String message) {
-
-            }
-        });
     }
 }

@@ -63,6 +63,7 @@ dependencies {
     //Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
 
     //Firebase core
     implementation 'com.google.firebase:firebase-core:16.0.1'
@@ -77,6 +78,10 @@ dependencies {
     //Butterknife
     implementation 'com.jakewharton:butterknife:9.0.0-rc2'
     annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc2'
+
+    //RxJava
+    implementation "io.reactivex.rxjava2:rxjava:2.2.4"
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

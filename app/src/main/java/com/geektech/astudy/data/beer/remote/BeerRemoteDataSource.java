@@ -6,9 +6,7 @@ import com.geektech.core.retrofit.RetrofitBaseDataSource;
 
 import java.util.ArrayList;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import io.reactivex.Single;
 
 // Created by askar on 11/13/18.
 public class BeerRemoteDataSource extends RetrofitBaseDataSource
@@ -31,58 +29,22 @@ public class BeerRemoteDataSource extends RetrofitBaseDataSource
             .create(BeerNetworkClient.class);
 
     @Override
-    public void getBeers(BeersCallback callback) {
-        Call<ArrayList<Beer>> beersCall = mClient.getBeers(2, 50);
-
-        beersCall.enqueue(new Callback<ArrayList<Beer>>() {
-            @Override
-            public void onResponse(Call<ArrayList<Beer>> call, Response<ArrayList<Beer>> response) {
-                if (response.isSuccessful()) {
-                    if (response.body() != null) {
-                        callback.onSuccess(response.body());
-                    }
-                } else {
-                    callback.onFail(response.message());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<Beer>> call, Throwable t) {
-                callback.onFail(t.getMessage());
-            }
-        });
+    public Single<ArrayList<Beer>> getBeers() {
+        return mClient.getBeers(1, 50);
     }
 
     @Override
-    public void getRandom(BeerCallback callback) {
-        Call<Beer> randomBeer = mClient.getRandomBeer();
+    public Single<Beer> getRandom() {
+        return mClient.getRandomBeer();
+    }
 
-        randomBeer.enqueue(new Callback<Beer>() {
-            @Override
-            public void onResponse(Call<Beer> call, Response<Beer> response) {
-                if (response.isSuccessful()) {
-                    if (response.body() != null) {
-                        callback.onSuccess(response.body());
-                    }
-                } else {
-                    callback.onFail(response.message());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Beer> call, Throwable t) {
-                callback.onFail(t.getMessage());
-            }
-        });
+    @Override
+    public Beer getBeer(int id) {
+        return null;
     }
 
     @Override
     public void setBeers(ArrayList<Beer> data) {
-
-    }
-
-    @Override
-    public void getBeer(int id, BeerCallback callback) {
 
     }
 }

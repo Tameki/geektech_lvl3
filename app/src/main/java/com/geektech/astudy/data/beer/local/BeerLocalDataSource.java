@@ -5,6 +5,8 @@ import com.geektech.astudy.data.beer.model.Beer;
 
 import java.util.ArrayList;
 
+import io.reactivex.Single;
+
 // Created by askar on 11/13/18.
 public class BeerLocalDataSource implements BeerDataSource {
 
@@ -25,22 +27,22 @@ public class BeerLocalDataSource implements BeerDataSource {
 
 
     @Override
-    public void getBeers(BeersCallback callback) {
-        //TODO: Return saved beers
+    public Single<ArrayList<Beer>> getBeers() {
+        return null;
     }
 
     @Override
-    public void getRandom(BeerCallback callback) {
+    public Single<Beer> getRandom() {
+        return null;
+    }
 
+    @Override
+    public Beer getBeer(int id) {
+        return null;
     }
 
     @Override
     public void setBeers(ArrayList<Beer> data) {
         //TODO: Save to DB
-    }
-
-    @Override
-    public void getBeer(int id, BeerCallback callback) {
-        //TODO: Return beer by id
     }
 }
