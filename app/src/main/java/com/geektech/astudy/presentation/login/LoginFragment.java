@@ -85,25 +85,6 @@ public class LoginFragment extends Fragment
     @Override
     public void onResume() {
         super.onResume();
-//        Single.just("Hello world").subscribe(s -> {
-//            Log.d("ololo", s);
-//        });
-
-//        Observable.create(emitter -> {
-//            while (!emitter.isDisposed()) {
-//                long time = System.currentTimeMillis();
-//                emitter.onNext(time);
-//
-//                if (time % 2 != 0) {
-//                    emitter.onError(new IllegalStateException("Odd milli"));
-//                }
-//            }
-//        }).subscribe(s -> {
-//            Log.d("ololo", s.toString());
-//        }, error -> {
-//            Log.d("ololo", error.toString());
-//        });
-
 
         RepositoryProvider.getBeerRepository()
                 .getBeers()
