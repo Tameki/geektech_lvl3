@@ -33,9 +33,6 @@ public class LoginInteractorTest {
     @Mock
     private LoginUseCases.UCCheckLoginCallback mCallback;
 
-    @Captor
-    private ArgumentCaptor<LoginUseCases.UCCheckLoginCallback> ucCheckLoginCallbackArgumentCaptor;
-
     private LoginInteractor mInteractor;
 
     @Before

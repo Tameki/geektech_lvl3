@@ -18,22 +18,23 @@ public class LoginActivity extends AppCompatActivity {
 
     @Inject
     LoginContract.Presenter mPresenter = null;
+    LoginFragment mView = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        LoginFragment fragment = LoginFragment.getInstance();
+        mView = LoginFragment.getInstance();
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(android.R.id.content, fragment)
+                .add(android.R.id.content, mView)
                 .commit();
 
         DaggerLoginComponent.builder()
                 .appComponent(((AdvancedApp) getApplicationContext()).component())
-                .loginModule(new LoginModule(fragment))
+                .loginModule(new LoginModule(mView))
                 .build()
-                .inject(fragment);
+                .inject(mView);
     }
 }
